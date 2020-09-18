@@ -1,4 +1,5 @@
-def checknum(oriNum,guessNum):
+import random
+def checkNum(oriNum,guessNum):
     strOriNum=str(oriNum)
     strGuessNum=str(guessNum)
     aNum=0
@@ -15,7 +16,18 @@ def checknum(oriNum,guessNum):
         if s in strOriNum:
             bNum=bNum+1
     return str(aNum)+'A'+str(bNum)+'B'
-
+def ResultNum():
+    seed='0123456789'
+    result=''
+    for i in range(4):
+        # print(i)
+        # print(random.randint(0,5))
+        num=random.randint(0,len(seed)-1)
+        # print(num)
+        s=seed[num]
+        result=result+s
+        seed=seed.replace(s,'')
+    return result
 def allPossible():
     seed='0123456789'
     possibledata=[]
@@ -34,16 +46,16 @@ def possibleOrigin(guessNum,result,dataArea):
     strGuessNum=str(guessNum)
     possibledata=[]
     for data in dataArea:
-        if checknum(data,strGuessNum)==result.upper():
+        if checkNum(data,strGuessNum)==result.upper():
             possibledata.append(data)
     return possibledata
-
-print(checknum(7381,7813))
-
-data=allPossible()
-data=possibleOrigin(1234,'0A2B',data)
-data=possibleOrigin(2156,'0A1B',data)
-data=possibleOrigin(7428,'1A1B',data)
-data=possibleOrigin(4920,'0A0B',data)
-data=possibleOrigin(7813,'1a3b',data)
-print(data)
+if __name__=='__main__':
+    print(__name__)
+    print(checkNum(7381,7138))
+# data=allPossible()
+# data=possibleOrigin(1234,'0A2B',data)
+# data=possibleOrigin(2156,'0A1B',data)
+# data=possibleOrigin(7428,'1A1B',data)
+# data=possibleOrigin(4920,'0A0B',data)
+# data=possibleOrigin(7813,'1a3b',data)
+# print(data)
